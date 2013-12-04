@@ -124,6 +124,10 @@
     }
 }
 
+-(DataRow *) executeQuery:(NSString *)sql :(NSArray *)params{
+    return nil;
+}
+
 -(void) close{
     if (sqlite3_close(_dbController)==SQLITE_OK) {
         _opend = NO;
@@ -134,5 +138,15 @@
 
 @implementation QParam
 
+
+@end
+
+@implementation DataRow
+
+@synthesize stmt = _stmt;
+
+@synthesize result = _result;
+
+@synthesize indexColNameDict = _indexColNameDict;
 
 @end

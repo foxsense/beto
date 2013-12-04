@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LocalStorageService.h"
 #import <sqlite3.h>
+#import "TableViewDataSource.h"
 #ifndef beto_PhotoShowRoom_h
 #define beto_PhotoShowRoom_h
 
@@ -16,11 +17,13 @@
 
 #endif
 
-@interface PhotoShowRoom : UIViewController
+@interface PhotoShowRoom : UIViewController<UITableViewDelegate>
 
-@property (copy,nonatomic) IBOutlet UICollectionView *collectView;
+@property (retain,nonatomic) IBOutlet UITableView *tableView;
 
 @property (retain,nonatomic) LocalStorageService *storageService;
+
+@property (retain)TableViewDataSource *dataSource;
 
 @property (assign) NSInteger countInDb;
 

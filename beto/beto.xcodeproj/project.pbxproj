@@ -10,8 +10,9 @@
 		A61D1400183BB568009C0C05 /* ImageData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A61D13FE183BB568009C0C05 /* ImageData.xcdatamodeld */; };
 		A61D1402183CE430009C0C05 /* imageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A61D1401183CE430009C0C05 /* imageView.xib */; };
 		A61D1407183CE7A3009C0C05 /* imageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A61D1406183CE7A3009C0C05 /* imageViewController.m */; };
-		A69A063C184CADCA00CE6067 /* PhotoShowRoom.xib in Resources */ = {isa = PBXBuildFile; fileRef = A69A063B184CADCA00CE6067 /* PhotoShowRoom.xib */; };
 		A69A063F184CAEBA00CE6067 /* PhotoShowRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = A69A063E184CAEBA00CE6067 /* PhotoShowRoom.m */; };
+		A69A0642184F5AA000CE6067 /* PhotoShowRoom.xib in Resources */ = {isa = PBXBuildFile; fileRef = A69A0641184F5AA000CE6067 /* PhotoShowRoom.xib */; };
+		A69A0645184F649A00CE6067 /* TableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A69A0644184F649A00CE6067 /* TableViewDataSource.m */; };
 		A69E9C65183A4FFD0018BB9B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69E9C64183A4FFD0018BB9B /* Foundation.framework */; };
 		A69E9C67183A4FFD0018BB9B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69E9C66183A4FFD0018BB9B /* CoreGraphics.framework */; };
 		A69E9C69183A4FFD0018BB9B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69E9C68183A4FFD0018BB9B /* UIKit.framework */; };
@@ -47,9 +48,12 @@
 		A61D1401183CE430009C0C05 /* imageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = imageView.xib; sourceTree = "<group>"; };
 		A61D1405183CE760009C0C05 /* imageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imageViewController.h; sourceTree = "<group>"; };
 		A61D1406183CE7A3009C0C05 /* imageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = imageViewController.m; sourceTree = "<group>"; };
-		A69A063B184CADCA00CE6067 /* PhotoShowRoom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoShowRoom.xib; sourceTree = "<group>"; };
 		A69A063D184CAE9B00CE6067 /* PhotoShowRoom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoShowRoom.h; sourceTree = "<group>"; };
 		A69A063E184CAEBA00CE6067 /* PhotoShowRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoShowRoom.m; sourceTree = "<group>"; };
+		A69A0640184E1F4300CE6067 /* IDataRow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDataRow.h; sourceTree = "<group>"; };
+		A69A0641184F5AA000CE6067 /* PhotoShowRoom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoShowRoom.xib; sourceTree = "<group>"; };
+		A69A0643184F638F00CE6067 /* TableViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewDataSource.h; sourceTree = "<group>"; };
+		A69A0644184F649A00CE6067 /* TableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewDataSource.m; sourceTree = "<group>"; };
 		A69E9C61183A4FFD0018BB9B /* beto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = beto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A69E9C64183A4FFD0018BB9B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A69E9C66183A4FFD0018BB9B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -109,6 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				A61D13FE183BB568009C0C05 /* ImageData.xcdatamodeld */,
+				A69A0643184F638F00CE6067 /* TableViewDataSource.h */,
+				A69A0644184F649A00CE6067 /* TableViewDataSource.m */,
 			);
 			name = data;
 			sourceTree = "<group>";
@@ -211,7 +217,7 @@
 			children = (
 				A69E9C95183A51880018BB9B /* welcome.xib */,
 				A61D1401183CE430009C0C05 /* imageView.xib */,
-				A69A063B184CADCA00CE6067 /* PhotoShowRoom.xib */,
+				A69A0641184F5AA000CE6067 /* PhotoShowRoom.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -238,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				A6A0B71618461D480076B793 /* IQueryParameter.h */,
+				A69A0640184E1F4300CE6067 /* IDataRow.h */,
 			);
 			name = interface;
 			sourceTree = "<group>";
@@ -318,7 +325,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A69A063C184CADCA00CE6067 /* PhotoShowRoom.xib in Resources */,
+				A69A0642184F5AA000CE6067 /* PhotoShowRoom.xib in Resources */,
 				A61D1402183CE430009C0C05 /* imageView.xib in Resources */,
 				A69E9C96183A51880018BB9B /* welcome.xib in Resources */,
 				A69E9C6F183A4FFD0018BB9B /* InfoPlist.strings in Resources */,
@@ -345,6 +352,7 @@
 				A69E9C9B183B93780018BB9B /* Connect.m in Sources */,
 				A69A063F184CAEBA00CE6067 /* PhotoShowRoom.m in Sources */,
 				A6BAB7A51841AC2600F92486 /* LocalStorageService.m in Sources */,
+				A69A0645184F649A00CE6067 /* TableViewDataSource.m in Sources */,
 				A69E9C75183A4FFD0018BB9B /* com_senAppDelegate.m in Sources */,
 				A61D1407183CE7A3009C0C05 /* imageViewController.m in Sources */,
 				A61D1400183BB568009C0C05 /* ImageData.xcdatamodeld in Sources */,

@@ -14,25 +14,29 @@
 -(PhotoShowRoom*) init{
     if (self =[super init]) {
         _storageService = [[LocalStorageService alloc]init];
+        _dataSource = [[TableViewDataSource alloc]init];
         [self initDbInfo];
     }
+//    self.view = _collectView;
     _countInDb = [self imgCountInDb];
+   
+//    [self.view addSubview:_tableView];
     return (self);
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [[[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"%d",1] delegate:self cancelButtonTitle:@"" otherButtonTitles:@"", nil] show];
 }
 
 -(void) viewDidLoad{
-    [[[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"%d",1] delegate:self cancelButtonTitle:@"" otherButtonTitles:@"", nil] show];
+//    _collectView
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated{
-    int c = [self imgCountInDb];
-    [[[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"%d",c] delegate:self cancelButtonTitle:@"" otherButtonTitles:@"", nil] show];
+    _tableView.delegate = self;
+    _tableView.dataSource = _dataSource;
 }
 
 -(void) loadPhoto{
@@ -56,7 +60,8 @@
 
 -(void) dealloc{
     [_storageService release];
-    [_collectView release];
+    [_tableView release];
+    [_dataSource release];
     [super dealloc];
 }
 

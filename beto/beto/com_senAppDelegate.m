@@ -20,7 +20,7 @@
     [self.window makeKeyAndVisible];
     
 //    [self.window addSubview:[[imageViewController alloc] init].view];
-    [self.window addSubview:[[PhotoShowRoom alloc] init].collectView];
+    [self.window addSubview:[[PhotoShowRoom alloc] init].view];
 //    [self.window.subviews[0] viewDidAppear:YES];
     return YES;
 }

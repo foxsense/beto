@@ -9,6 +9,7 @@
 #import <sqlite3.h>
 #import <Foundation/Foundation.h>
 #import "IQueryParameter.h"
+#import "IDataRow.h"
 
 #ifndef beto_LocalSotrageService_h
 #define beto_LocalSotrageService_h
@@ -22,6 +23,11 @@
 @property (retain) NSObject<IQueryParameter> * params;
 
 @end
+
+@interface DataRow : NSObject<IDataRow>
+
+@end
+
 
 @interface QParam : NSObject
 
@@ -65,6 +71,9 @@
 -(void) executeNoquery:(NSString *)sql :(NSArray *) params;
 
 -(id) executeScalar:(NSString *) sql :(NSArray *) params;
+
+-(DataRow*) executeQuery:(NSString *)sql :(NSArray *) params;
+
 @end
 
 
