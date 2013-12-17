@@ -50,8 +50,13 @@
         for (id p in params) {
             [self bindParameter:_stmt :p];
         }
+        
         if (sqlite3_step(_stmt) != SQLITE_DONE)
-            NSAssert(0, @"更新数据库表FIELDS出错: ");
+        {
+//            char * err =;
+            NSLog(@"更新数据库表FIELDS出错:%s",  sqlite3_errmsg(_dbController));
+//            NSAssert(0,  [NSString stringWithFormat:@"%@%s" @"更新数据库表FIELDS出错",err]);
+        }
         sqlite3_finalize(_stmt);
     }
 }
@@ -81,6 +86,31 @@
     return ([NSNull null]);
 }
 
+-(DataRow *) executeQuery:(NSString *)sql :(NSArray *)params{
+    if(!_opend)
+        [self open];
+    DataRow *row = nil;
+    if(sqlite3_prepare_v2(_dbController, [sql UTF8String], -1, &_stmt, Nil) == SQLITE_OK){
+        if(params.count > 0){
+            [self bindParameter:_stmt :params[0]];
+        }
+        row = [[DataRow alloc] init];
+        row.result = [[NSMutableArray alloc] init];
+        while (sqlite3_step(_stmt)==SQLITE_ROW) {
+//            NSMutableArray *tempArr = [[NSMutableArray alloc]init];
+            [row.result addObject: [NSString stringWithFormat:@"%d", sqlite3_column_int(_stmt, 0) ]];
+            [row.result addObject: [NSString stringWithFormat:@"%s", sqlite3_column_text(_stmt,1)]];
+            int length = sqlite3_column_bytes(_stmt, 2);
+            [row.result addObject: (id)[NSData dataWithBytes:sqlite3_column_blob(_stmt, 2) length:length]];
+//            [row.result addObject:(id)tempArr];
+//            [tempArr release];
+        }
+    }
+    [row autorelease];
+    return row;
+}
+
+
 -(void) bindParameter:(sqlite3_stmt *)statement :(QParam *) p{
 //    if(p.ctype == typeof(NSString)){
     if (p.index == 1) {
@@ -89,6 +119,10 @@
     if(p.index == 2){
         NSInteger length = [((NSData*)p.obj) length];
         sqlite3_bind_blob(statement, p.index,[((NSData*)p.obj) bytes] , length, nil);
+    }
+    if(p.index == 3){
+        int val =[p.obj intValue];
+        sqlite3_bind_int(statement, 1, val);
     }
 //    if(p.index ==1 ){
 //        sqlite3_bind_int(statement,1, 1);
@@ -120,13 +154,10 @@
     if(SQLITE_OK != sqlite3_open([self.path UTF8String], &self->_dbController)){
         sqlite3_close(_dbController);
         [self release];
-        _opend = YES;
     }
+    _opend = YES;
 }
 
--(DataRow *) executeQuery:(NSString *)sql :(NSArray *)params{
-    return nil;
-}
 
 -(void) close{
     if (sqlite3_close(_dbController)==SQLITE_OK) {

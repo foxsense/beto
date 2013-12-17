@@ -12,7 +12,7 @@
 
 -(TableViewDataSource *)init{
     if(self = [super init]){
-        _list = [[NSArray alloc]initWithObjects: @"aaaa",@"bbbbb",@"ccccc",@"ddddd",nil];
+        _list = [[NSArray alloc]initWithObjects: @"网络图片",@"本地数据库",nil];
     }
     return self;
 }
@@ -30,13 +30,16 @@
     static NSString *CellWithIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellWithIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellWithIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellWithIdentifier];
     }
     
     NSUInteger row = [indexPath row];
     cell.textLabel.text = [_list objectAtIndex:row];
 //    cell.imageView.image = [UIImage imageNamed:@"green.png"];
-//    cell.detailTextLabel.text = @"详细信息";
+    cell.detailTextLabel.text = [_list objectAtIndex:row];
+//    UIFont *font =[[UIFont alloc] init];
+    cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:5];
+//    cell.detailTextLabel.font = 
 //    cell.accessoryType = UITableViewCellSelectionStyleGray;
     return cell;
 

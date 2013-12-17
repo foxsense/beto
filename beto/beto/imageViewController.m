@@ -12,12 +12,25 @@
 
 @implementation imageViewController
 
+//@synthesize isDbMode = _isDbMode;
 -(imageViewController*) init{
     [super init];
-    self.address = [NSMutableArray arrayWithObjects: @"http://c.hiphotos.baidu.com/image/w%3D2048/sign=cfe9bc1480cb39dbc1c06056e42e0824/b64543a98226cffc0c3a674cb8014a90f603ea38.jpg",@"http://h.hiphotos.baidu.com/image/w%3D1366%3Bcrop%3D0%2C0%2C1366%2C768/sign=5094c8be442309f7e76fa91144383790/728da9773912b31baf8f10038418367adab4e13d.jpg",@"http://c.hiphotos.baidu.com/image/w%3D2048/sign=1e594201d31b0ef46ce89f5ee9fc50da/f636afc379310a550982d4dbb64543a98226107e.jpg", nil];
+    self.address = [NSMutableArray arrayWithObjects: @"http://b.hiphotos.baidu.com/image/w%3D2048/sign=353192aca6c27d1ea5263cc42fedad6e/024f78f0f736afc3983f1f6db119ebc4b7451282.jpg",@"http://c.hiphotos.baidu.com/image/w%3D2048/sign=0950f78e2fdda3cc0be4bf2035d13801/5d6034a85edf8db1897512750823dd54564e7443.jpg",@"http://b.hiphotos.baidu.com/image/w%3D2048/sign=4add5f8a5bafa40f3cc6c9dd9f5c024f/a08b87d6277f9e2f3e25f5b01e30e924b899f372.jpg",@"http://h.hiphotos.baidu.com/image/w%3D2048/sign=4c05b00c69600c33f079d9c82e74500f/a044ad345982b2b7f7c44adc33adcbef76099b4a.jpg", nil];
     self.imgCounts = self.address.count;
     self.imgIdx = 0;
+    _dbMode = NO;
     _storageService = [[LocalStorageService alloc] init];
+    return self;
+}
+
+-(imageViewController *) initWithSqlite:(NSString *) dbName{
+    if(self = [super init])
+    {
+        self.address = nil;
+        _storageService = [[LocalStorageService alloc] init];
+        _dbMode = YES;
+//        [self initDbInfo];
+    }
     return self;
 }
 
@@ -37,22 +50,36 @@
     [self changeImg];
 }
 
+-(void) imgAnimation:(UISwipeGestureRecognizer *) sender{
+//    CGRect imgPos = _imgView.frame;
+//    _imgView animationDidStart:
+//    imgPos.origin.x = imgPos.origin.x + 50;
+    
+//    [_imgView setFrame:imgPos];
+    
+}
+
 -(void) swipHandle:(UISwipeGestureRecognizer *)sender{
-    if(sender.direction == UISwipeGestureRecognizerDirectionLeft){
-        if(self.imgIdx == 0){
-            self.imgIdx = self.imgCounts - 1;
-        }
-        else
-            self.imgIdx --;
+    if (sender.state == UIGestureRecognizerStateRecognized || sender.state == UIGestureRecognizerStateChanged) {
+        [self imgAnimation:sender];
     }
-    if(sender.direction == UISwipeGestureRecognizerDirectionRight){
-        if(self.imgIdx >= self.imgCounts-1){
-            self.imgIdx = 0;
+    if (sender.state == UIGestureRecognizerStateRecognized) {
+        if(sender.direction == UISwipeGestureRecognizerDirectionLeft){
+            if(self.imgIdx == 0){
+                self.imgIdx = self.imgCounts - 1;
+            }
+            else
+                self.imgIdx --;
         }
-        else
-            self.imgIdx++;
+        if(sender.direction == UISwipeGestureRecognizerDirectionRight){
+            if(self.imgIdx >= self.imgCounts-1){
+                self.imgIdx = 0;
+            }
+            else
+                self.imgIdx++;
+        }
+        [self showImg:self.imgIdx];
     }
-    [self showImg:self.imgIdx];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -78,12 +105,19 @@
     
     
     [self.imgView setUserInteractionEnabled:YES];
+
 }
 
 -(void) showImg:(NSInteger) idx{
-    self.thread = [[NSThread alloc]initWithTarget:self selector:@selector(requerstImg:) object:self.address[idx]];
-    [self.thread start];
-
+    if(!self.isDbMode)
+    {
+        self.thread = [[NSThread alloc]initWithTarget:self selector:@selector(requerstImg:) object:self.address[idx]];
+        [self.thread start];
+    }
+    else
+    {
+        [self loadImage];
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated{
@@ -147,6 +181,7 @@
 //    p.obj = (id)1;
 //    [arr addObject:p];
     [_storageService executeNoquery:insertSql :arr];
+//    [_storageService ]
     [pool release];
 }
 
@@ -160,10 +195,52 @@
 }
 
 -(void) loadImage{
-    UIImage *img =[[UIImage alloc] initWithData:self.util.receivedData];
+    UIImage *img = nil;
+    if(!self.isDbMode)
+    {
+        img = [[UIImage alloc] initWithData:self.util.receivedData];
+    }
+    else
+    {
+        img = [[UIImage alloc] initWithData:[self loadImageFromDb:_imgIdx]];
+    }
     [img resizingMode];
+    [self.imgView.image release];
+    [_imgView setContentMode:UIViewContentModeScaleAspectFit];
+//    [self.imgView release];
+    [self.imgView setImage:img];
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:0.3];
+    [animation setFillMode:kCAFillModeForwards];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+    [animation setType:@"moveIn"];// rippleEffect
+    [animation setSubtype:kCATransitionFromLeft];
+    [_imgView.layer addAnimation:animation forKey:nil];
     
-    self.imgView.image =img;
+    CGRect rect = _imgView.frame;
+//    rect.size.height = 200+rand() % 300;
+//    rect.size.width = 200+rand() % 300;
+    [_imgView setFrame:rect];
+}
+
+
+-(NSData *) loadImageFromDb:(NSInteger) idx{
+    NSData *data = nil;
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSString *sql = @"select img_id, img_name ,img_image from beto_img where img_id = ?";
+    NSMutableArray *params = [[NSMutableArray alloc]init];
+    QParam *p = [[QParam alloc] init];
+    p.index = 3;
+    p.colName = @"img_id";
+    p.obj = [NSString stringWithFormat:@"%ld",(_imgIdx + 1) ];
+    [params addObject:p];
+    DataRow *row = [_storageService executeQuery:sql :params];
+    NSArray *results = row.result;
+    
+    data = (NSData*)results[2];
+    [pool release];
+    [data autorelease];
+    return data;
 }
 
 -(void) initDbInfo{

@@ -26,6 +26,7 @@
 
 -(void) viewDidAppear:(BOOL)animated
 {
+//    _tableView.style = UITableViewStyleGrouped;
     [super viewDidAppear:animated];
 }
 
@@ -65,4 +66,23 @@
     [super dealloc];
 }
 
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    imageViewController *imgVC = nil;
+    NSString *tempStr = _dataSource.list[indexPath.row];
+    if ([tempStr compare:@"网络图片"] == NSOrderedSame) {
+        imgVC = [[imageViewController alloc] init];
+    }
+    else{
+        imgVC = [[imageViewController alloc] initWithSqlite:@"beto.sqlite"];
+        imgVC.imgCounts = _countInDb;
+        imgVC.storageService =_storageService;
+        [_storageService close];
+    }
+    [self presentModalViewController:imgVC animated:YES];
+    
+//    [self.navigationController pushViewController:imgVC animated:YES];
+//    [imgVC release];
+    [self dismissModalViewControllerAnimated:YES];
+}
 @end

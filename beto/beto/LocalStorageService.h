@@ -74,6 +74,8 @@
 
 -(DataRow*) executeQuery:(NSString *)sql :(NSArray *) params;
 
+-(void) close;
+
 @end
 
 

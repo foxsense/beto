@@ -10,6 +10,7 @@
 #import "LocalStorageService.h"
 #import <sqlite3.h>
 #import "TableViewDataSource.h"
+#import "imageViewController.h"
 #ifndef beto_PhotoShowRoom_h
 #define beto_PhotoShowRoom_h
 

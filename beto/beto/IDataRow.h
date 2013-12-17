@@ -18,8 +18,8 @@
 
 @property (atomic) sqlite3_stmt *stmt;
 
-@property (copy,atomic) NSMutableArray *result;
+@property (retain,atomic) NSMutableArray *result;
 
-@property (copy,atomic) NSMutableDictionary *indexColNameDict;
+@property (retain,atomic) NSMutableDictionary *indexColNameDict;
 
 @end

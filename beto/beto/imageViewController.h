@@ -35,4 +35,8 @@
 
 @property (assign) NSInteger imgCounts;
 
+@property (assign,getter = isDbMode) BOOL dbMode;
+
+-(imageViewController *) initWithSqlite:(NSString *) dbName;
+
 @end

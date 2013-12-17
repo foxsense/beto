@@ -13,6 +13,10 @@
 		A69A063F184CAEBA00CE6067 /* PhotoShowRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = A69A063E184CAEBA00CE6067 /* PhotoShowRoom.m */; };
 		A69A0642184F5AA000CE6067 /* PhotoShowRoom.xib in Resources */ = {isa = PBXBuildFile; fileRef = A69A0641184F5AA000CE6067 /* PhotoShowRoom.xib */; };
 		A69A0645184F649A00CE6067 /* TableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A69A0644184F649A00CE6067 /* TableViewDataSource.m */; };
+		A69E7C37185F279600545C07 /* ScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = A69E7C36185F279600545C07 /* ScoreView.m */; };
+		A69E7C3C185F4D4300545C07 /* kermit_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = A69E7C39185F4D4300545C07 /* kermit_empty.png */; };
+		A69E7C3D185F4D4300545C07 /* kermit_full.png in Resources */ = {isa = PBXBuildFile; fileRef = A69E7C3A185F4D4300545C07 /* kermit_full.png */; };
+		A69E7C3E185F4D4300545C07 /* kermit_half.png in Resources */ = {isa = PBXBuildFile; fileRef = A69E7C3B185F4D4300545C07 /* kermit_half.png */; };
 		A69E9C65183A4FFD0018BB9B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69E9C64183A4FFD0018BB9B /* Foundation.framework */; };
 		A69E9C67183A4FFD0018BB9B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69E9C66183A4FFD0018BB9B /* CoreGraphics.framework */; };
 		A69E9C69183A4FFD0018BB9B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A69E9C68183A4FFD0018BB9B /* UIKit.framework */; };
@@ -54,6 +58,12 @@
 		A69A0641184F5AA000CE6067 /* PhotoShowRoom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoShowRoom.xib; sourceTree = "<group>"; };
 		A69A0643184F638F00CE6067 /* TableViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewDataSource.h; sourceTree = "<group>"; };
 		A69A0644184F649A00CE6067 /* TableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewDataSource.m; sourceTree = "<group>"; };
+		A69E7C35185F278400545C07 /* ScoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreView.h; sourceTree = "<group>"; };
+		A69E7C36185F279600545C07 /* ScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreView.m; sourceTree = "<group>"; };
+		A69E7C38185F29E000545C07 /* IScoreChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IScoreChange.h; sourceTree = "<group>"; };
+		A69E7C39185F4D4300545C07 /* kermit_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kermit_empty.png; path = resources/kermit_empty.png; sourceTree = "<group>"; };
+		A69E7C3A185F4D4300545C07 /* kermit_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kermit_full.png; path = resources/kermit_full.png; sourceTree = "<group>"; };
+		A69E7C3B185F4D4300545C07 /* kermit_half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = kermit_half.png; path = resources/kermit_half.png; sourceTree = "<group>"; };
 		A69E9C61183A4FFD0018BB9B /* beto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = beto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A69E9C64183A4FFD0018BB9B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A69E9C66183A4FFD0018BB9B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -130,8 +140,20 @@
 				A6BAB7A71841AD9C00F92486 /* MessagePush.m */,
 				A69A063D184CAE9B00CE6067 /* PhotoShowRoom.h */,
 				A69A063E184CAEBA00CE6067 /* PhotoShowRoom.m */,
+				A69E7C35185F278400545C07 /* ScoreView.h */,
+				A69E7C36185F279600545C07 /* ScoreView.m */,
 			);
 			name = class;
+			sourceTree = "<group>";
+		};
+		A69E7C3F185F4D4C00545C07 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				A69E7C3B185F4D4300545C07 /* kermit_half.png */,
+				A69E7C3A185F4D4300545C07 /* kermit_full.png */,
+				A69E7C39185F4D4300545C07 /* kermit_empty.png */,
+			);
+			name = resources;
 			sourceTree = "<group>";
 		};
 		A69E9C58183A4FFD0018BB9B = {
@@ -169,6 +191,7 @@
 		A69E9C6A183A4FFD0018BB9B /* beto */ = {
 			isa = PBXGroup;
 			children = (
+				A69E7C3F185F4D4C00545C07 /* resources */,
 				A6A0B71518461D2D0076B793 /* interface */,
 				A61D1403183CE744009C0C05 /* class */,
 				A61D13FD183BB54E009C0C05 /* data */,
@@ -245,6 +268,7 @@
 			children = (
 				A6A0B71618461D480076B793 /* IQueryParameter.h */,
 				A69A0640184E1F4300CE6067 /* IDataRow.h */,
+				A69E7C38185F29E000545C07 /* IScoreChange.h */,
 			);
 			name = interface;
 			sourceTree = "<group>";
@@ -325,7 +349,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A69E7C3E185F4D4300545C07 /* kermit_half.png in Resources */,
 				A69A0642184F5AA000CE6067 /* PhotoShowRoom.xib in Resources */,
+				A69E7C3C185F4D4300545C07 /* kermit_empty.png in Resources */,
+				A69E7C3D185F4D4300545C07 /* kermit_full.png in Resources */,
 				A61D1402183CE430009C0C05 /* imageView.xib in Resources */,
 				A69E9C96183A51880018BB9B /* welcome.xib in Resources */,
 				A69E9C6F183A4FFD0018BB9B /* InfoPlist.strings in Resources */,
@@ -353,6 +380,7 @@
 				A69A063F184CAEBA00CE6067 /* PhotoShowRoom.m in Sources */,
 				A6BAB7A51841AC2600F92486 /* LocalStorageService.m in Sources */,
 				A69A0645184F649A00CE6067 /* TableViewDataSource.m in Sources */,
+				A69E7C37185F279600545C07 /* ScoreView.m in Sources */,
 				A69E9C75183A4FFD0018BB9B /* com_senAppDelegate.m in Sources */,
 				A61D1407183CE7A3009C0C05 /* imageViewController.m in Sources */,
 				A61D1400183BB568009C0C05 /* ImageData.xcdatamodeld in Sources */,
