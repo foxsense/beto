@@ -35,6 +35,9 @@
 		A6BAB7A51841AC2600F92486 /* LocalStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BAB7A41841AC2600F92486 /* LocalStorageService.m */; };
 		A6BAB7A81841AD9C00F92486 /* MessagePush.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BAB7A71841AD9C00F92486 /* MessagePush.m */; };
 		A6BAB7AC1841B1B800F92486 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A6BAB7AB1841B1B800F92486 /* libsqlite3.dylib */; };
+		A6E2D2B61861E89F00CD61C4 /* shockedface2_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E2D2B31861E89F00CD61C4 /* shockedface2_empty.png */; };
+		A6E2D2B71861E89F00CD61C4 /* shockedface2_full.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E2D2B41861E89F00CD61C4 /* shockedface2_full.png */; };
+		A6E2D2B81861E89F00CD61C4 /* shockedface2_half.png in Resources */ = {isa = PBXBuildFile; fileRef = A6E2D2B51861E89F00CD61C4 /* shockedface2_half.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +95,9 @@
 		A6BAB7A71841AD9C00F92486 /* MessagePush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagePush.m; sourceTree = "<group>"; };
 		A6BAB7A91841AE9400F92486 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		A6BAB7AB1841B1B800F92486 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		A6E2D2B31861E89F00CD61C4 /* shockedface2_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shockedface2_empty.png; path = resources/shockedface2_empty.png; sourceTree = "<group>"; };
+		A6E2D2B41861E89F00CD61C4 /* shockedface2_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shockedface2_full.png; path = resources/shockedface2_full.png; sourceTree = "<group>"; };
+		A6E2D2B51861E89F00CD61C4 /* shockedface2_half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shockedface2_half.png; path = resources/shockedface2_half.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +155,9 @@
 		A69E7C3F185F4D4C00545C07 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				A6E2D2B31861E89F00CD61C4 /* shockedface2_empty.png */,
+				A6E2D2B41861E89F00CD61C4 /* shockedface2_full.png */,
+				A6E2D2B51861E89F00CD61C4 /* shockedface2_half.png */,
 				A69E7C3B185F4D4300545C07 /* kermit_half.png */,
 				A69E7C3A185F4D4300545C07 /* kermit_full.png */,
 				A69E7C39185F4D4300545C07 /* kermit_empty.png */,
@@ -351,8 +360,11 @@
 			files = (
 				A69E7C3E185F4D4300545C07 /* kermit_half.png in Resources */,
 				A69A0642184F5AA000CE6067 /* PhotoShowRoom.xib in Resources */,
+				A6E2D2B71861E89F00CD61C4 /* shockedface2_full.png in Resources */,
 				A69E7C3C185F4D4300545C07 /* kermit_empty.png in Resources */,
 				A69E7C3D185F4D4300545C07 /* kermit_full.png in Resources */,
+				A6E2D2B81861E89F00CD61C4 /* shockedface2_half.png in Resources */,
+				A6E2D2B61861E89F00CD61C4 /* shockedface2_empty.png in Resources */,
 				A61D1402183CE430009C0C05 /* imageView.xib in Resources */,
 				A69E9C96183A51880018BB9B /* welcome.xib in Resources */,
 				A69E9C6F183A4FFD0018BB9B /* InfoPlist.strings in Resources */,

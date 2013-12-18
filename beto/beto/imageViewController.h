@@ -16,10 +16,14 @@
 #import <UIKit/UIGestureRecognizerSubclass.h>
 #import "LocalStorageService.h"
 #import "Connect.h"
+#import "ScoreView.h"
+#import "IScoreChange.h"
 
-@interface imageViewController : UIViewController
+@interface imageViewController : UIViewController<ScoreViewDelegate>
 
 @property (nonatomic,retain)IBOutlet UIImageView *imgView;
+
+@property (retain, nonatomic) IBOutlet ScoreView *scoreView;
 
 @property (nonatomic,retain) ConnectUtil *util;
 

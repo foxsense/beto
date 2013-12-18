@@ -67,14 +67,14 @@
 
 -(void) layoutSubviews{
     [super layoutSubviews];
-    if (_nonSelectedImage == nil) {
-        return;
-    }
-    int imgWidth = 10;
-    int imgHeight = 10;
+//    if (_nonSelectedImage == nil) {
+//        return;
+//    }
+    int imgWidth = (self.frame.size.width - (5*2) - (5*self.imageViews.count)) / self.imageViews.count;;
+    int imgHeight = MAX(self.frame.size.height, 10);
     for (int i =0 ; i < _imageViews.count; i++) {
         UIImageView *views = [_imageViews objectAtIndex:i];
-        CGRect frame = CGRectMake(5 + i* (5+ imgWidth), 0, imgWidth, imgHeight);
+        CGRect frame = CGRectMake(10 + i* (5+ imgWidth), 0, imgWidth, imgHeight);
         views.frame = frame;
     }
 }
@@ -118,19 +118,34 @@
     [self refresh];
 }
 
+//-(void) setScore:(float)score{
+//    _score = score;
+//    [self refresh];
+//}
+
 -(void) handleTouch:(CGPoint) point{
     if(!_canModify){
         return;
     }
     int cScore = 0;
-    for (int i = 0; i<_imageViews.count; i++) {
+    for (int i = _imageViews.count - 1; i>=0 ;i--) {
         UIImageView *imageView = [_imageViews objectAtIndex:i];
-        if(imageView.frame.origin.x > point.x){
+        if(imageView.frame.origin.x < point.x){
             cScore = i+1;
             break;
         }
+//        else if(i== _imageViews.count-1)
+//        {
+//            cScore = 5;
+//        }
+//        else if(i == 0 && imageView.frame.origin.x > point.x)
+//        {
+//            cScore = 0;
+//            break;
+//        }
+        
     }
-    _score = cScore;
+    self.score = cScore;
     
 }
 

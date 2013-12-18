@@ -35,10 +35,12 @@
 }
 
 -(void) dealloc{
+    [_scoreView release];
     [self.thread release];
     [self.util release];
     [self.address release];
     [self.dbPath release];
+    [_scoreView release];
     [super dealloc];
 }
 
@@ -118,6 +120,7 @@
     {
         [self loadImage];
     }
+    [self initScoreView];
 }
 
 -(void) viewDidAppear:(BOOL)animated{
@@ -250,6 +253,27 @@
     
     NSString *createSql =@"create table if not exists beto_img (img_id integer primary key autoincrement , img_name text , img_image blob)";
     [_storageService createTable:createSql];
+}
+
+- (BOOL)shouldAutorotate{
+    return YES;
+}
+
+#pragma mark costumview
+
+-(void) initScoreView{
+    _scoreView.nonSelectedImage = [UIImage imageNamed:@"kermit_empty.png"];
+    _scoreView.halfSelectedImage = [UIImage imageNamed:@"kermit_half.png"];
+    _scoreView.selectedImage = [UIImage imageNamed:@"kermit_full.png"];
+    _scoreView.score = 4;
+    _scoreView.maxScore = 5;
+    _scoreView.canModify = YES;
+    _scoreView.delegate = self;
+    
+}
+
+-(void) scoreView:(ScoreView *)scoreView scoreDidChange:(float)score{
+//    [[[UIAlertView alloc] initWithTitle:@"msg" message:[NSString stringWithFormat:@"%f",score] delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:@"ok", nil] show];
 }
 
 -(void) temp{

@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="imageViewController">
             <connections>
                 <outlet property="imgView" destination="d0b-sI-gRV" id="h1g-kl-MR1"/>
+                <outlet property="scoreView" destination="u63-Lw-oEJ" id="B5c-P8-8c8"/>
                 <outlet property="view" destination="1" id="Qtu-jW-8yb"/>
             </connections>
         </placeholder>
@@ -29,7 +30,7 @@
                         <action selector="tap:" destination="-1" eventType="touchUpInside" id="MYO-FG-vYF"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" id="u63-Lw-oEJ">
+                <view contentMode="scaleToFill" id="u63-Lw-oEJ" customClass="ScoreView">
                     <rect key="frame" x="0.0" y="504" width="320" height="64"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
